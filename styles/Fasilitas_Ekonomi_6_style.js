@@ -27,7 +27,7 @@ var style_Fasilitas_Ekonomi_6 = function(feature, resolution){
                               labelFill, placement, bufferColor,
                               bufferWidth)
     }),new ol.style.Style({
-        image: new ol.style.Circle({radius: 3.7999999999999994 + size,
+        image: new ol.style.Circle({radius: 3.8 + size,
             displacement: [0, 0], stroke: new ol.style.Stroke({color: 'rgba(0,0,0,1.0)', lineDash: null, lineCap: 'butt', lineJoin: 'miter', width: 1.52}), fill: new ol.style.Fill({color: 'rgba(0,0,0,1.0)'})}),
         text: createTextStyle(feature, resolution, labelText, labelFont,
                               labelFill, placement, bufferColor,
