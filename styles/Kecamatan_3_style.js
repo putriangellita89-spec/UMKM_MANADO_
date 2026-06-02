@@ -117,8 +117,8 @@ var style_Kecamatan_3 = function(feature, resolution){
     var offsetX = 0;
     var offsetY = 0;
     var placement = 'point';
-    if (feature.get("kd_propins") !== null) {
-        labelText = String(feature.get("kd_propins"));
+    if (feature.get("nm_kecamat") !== null) {
+        labelText = String(feature.get("nm_kecamat"));
     }
     
     var style = categories_Kecamatan_3(feature, value, size, resolution, labelText,
