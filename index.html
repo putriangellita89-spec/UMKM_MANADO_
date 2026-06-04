@@ -22,43 +22,21 @@
         #app-header .logo{font-size:26px;margin-right:14px;}
         #app-header h1{font-size:16px;font-weight:800;}
         #app-header p{font-size:11px;opacity:0.65;margin-top:2px;}
-        #app-header .badge{
-            margin-left:auto;
-            background:rgba(255,255,255,0.12);
-            border:1px solid rgba(255,255,255,0.2);
-            border-radius:20px;padding:5px 16px;
-            font-size:13px;font-weight:700;
-        }
+        .badge{margin-left:auto;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 16px;font-size:13px;font-weight:700;}
 
         #map{padding-top:58px;}
 
-        /* PANEL */
         #detail-panel{
-            position:fixed;top:58px;right:0;
-            width:340px;height:calc(100vh - 58px);
-            background:#fff;z-index:900;
-            box-shadow:-6px 0 32px rgba(0,0,0,0.22);
-            transform:translateX(105%);
-            transition:transform 0.35s cubic-bezier(.4,0,.2,1);
+            position:fixed;top:58px;right:0;width:340px;height:calc(100vh - 58px);
+            background:#fff;z-index:900;box-shadow:-6px 0 32px rgba(0,0,0,0.22);
+            transform:translateX(105%);transition:transform 0.35s cubic-bezier(.4,0,.2,1);
             display:flex;flex-direction:column;overflow:hidden;
         }
         #detail-panel.open{transform:translateX(0);}
-        #panel-header{
-            padding:22px 20px 16px;color:#fff;position:relative;flex-shrink:0;
-        }
-        #panel-close{
-            position:absolute;top:12px;right:12px;
-            background:rgba(255,255,255,0.15);border:none;color:#fff;
-            font-size:15px;cursor:pointer;border-radius:50%;
-            width:30px;height:30px;display:flex;align-items:center;justify-content:center;
-        }
+        #panel-header{padding:22px 20px 16px;color:#fff;position:relative;flex-shrink:0;}
+        #panel-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:15px;cursor:pointer;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
         #panel-close:hover{background:rgba(255,255,255,0.28);}
-        .panel-badge{
-            display:inline-block;font-size:9px;font-weight:700;
-            letter-spacing:1.8px;text-transform:uppercase;
-            background:rgba(255,255,255,0.18);border-radius:20px;
-            padding:3px 12px;margin-bottom:10px;
-        }
+        .panel-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;background:rgba(255,255,255,0.18);border-radius:20px;padding:3px 12px;margin-bottom:10px;}
         #panel-icon{font-size:38px;display:block;margin-bottom:6px;}
         #panel-name{font-size:19px;font-weight:800;line-height:1.25;margin-bottom:4px;}
         #panel-sub{font-size:12px;opacity:0.72;}
@@ -73,35 +51,17 @@
         .dlbl{color:#aaa;flex-shrink:0;margin-right:8px;}
         .dval{font-weight:700;color:#1a1a1a;text-align:right;}
         .chip{display:inline-block;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;}
-        .potensi-box{
-            background:linear-gradient(135deg,#fff8f0,#fff3e0);
-            border-left:4px solid #e67e22;
-            border-radius:0 12px 12px 0;
-            padding:14px 16px;margin:14px 0;
-            font-size:13px;line-height:1.6;color:#5d3a00;
-        }
-        .potensi-box strong{display:block;font-size:12px;color:#e67e22;margin-bottom:6px;letter-spacing:0.5px;}
+        .potensi-box{background:linear-gradient(135deg,#fff8f0,#fff3e0);border-left:4px solid #e67e22;border-radius:0 12px 12px 0;padding:14px 16px;margin:14px 0;font-size:13px;line-height:1.6;color:#5d3a00;}
+        .potensi-box strong{display:block;font-size:11px;color:#e67e22;margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase;}
 
-        /* LEGEND */
-        #legend-box{
-            position:fixed;left:14px;bottom:14px;
-            background:linear-gradient(160deg,#0d0118,#2d0820);
-            color:#fff;border-radius:16px;
-            box-shadow:0 6px 28px rgba(0,0,0,0.4);
-            padding:16px 20px;z-index:800;min-width:170px;
-        }
+        #legend-box{position:fixed;left:14px;bottom:14px;background:linear-gradient(160deg,#0d0118,#2d0820);color:#fff;border-radius:16px;box-shadow:0 6px 28px rgba(0,0,0,0.4);padding:16px 20px;z-index:800;min-width:180px;}
         #legend-box h3{font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.45);text-transform:uppercase;margin-bottom:12px;}
         .litem{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-size:13px;color:#fff;}
         .litem:last-child{margin-bottom:0;}
         .lpin{width:20px;height:26px;flex-shrink:0;}
+        .lcircle{width:20px;height:20px;flex-shrink:0;}
 
-        #hint{
-            position:fixed;right:16px;bottom:16px;
-            background:linear-gradient(135deg,rgba(13,1,24,0.92),rgba(59,10,46,0.92));
-            color:#fff;border-radius:24px;padding:9px 18px;
-            font-size:12px;z-index:800;pointer-events:none;
-            backdrop-filter:blur(6px);box-shadow:0 4px 16px rgba(0,0,0,0.3);
-        }
+        #hint{position:fixed;right:16px;bottom:16px;background:linear-gradient(135deg,rgba(13,1,24,0.92),rgba(59,10,46,0.92));color:#fff;border-radius:24px;padding:9px 18px;font-size:12px;z-index:800;pointer-events:none;backdrop-filter:blur(6px);}
 
         .ol-popup{display:none!important;}
         .ol-zoom{top:70px!important;}
@@ -110,18 +70,12 @@
 <body>
 <div id="app-header">
     <span class="logo">🏙️</span>
-    <div>
-        <h1>Peta UMKM Kota Manado</h1>
-        <p>Sulawesi Utara, Indonesia</p>
-    </div>
+    <div><h1>Peta UMKM Kota Manado</h1><p>Sulawesi Utara, Indonesia</p></div>
     <div class="badge">59 UMKM</div>
 </div>
 
 <div id="map">
-    <div id="popup" class="ol-popup">
-        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-        <div id="popup-content"></div>
-    </div>
+    <div id="popup" class="ol-popup"><a href="#" id="popup-closer"></a><div id="popup-content"></div></div>
 </div>
 
 <div id="detail-panel">
@@ -150,13 +104,14 @@
         <span>Bengkel</span>
     </div>
     <div class="litem">
-        <svg class="lpin" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="white" stroke="black" stroke-width="2"/><circle cx="10" cy="10" r="4" fill="black"/></svg>
+        <svg class="lcircle" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="white" stroke="#333" stroke-width="2"/><circle cx="10" cy="10" r="4" fill="#333"/></svg>
         <span>Potensi Pengembangan</span>
     </div>
 </div>
 
 <div id="hint">👆 Klik titik atau wilayah untuk lihat detail</div>
 
+<!-- Load ALL original scripts exactly as original index.html -->
 <script src="resources/qgis2web_expressions.js"></script>
 <script src="./resources/functions.js"></script>
 <script src="./resources/ol.js"></script>
@@ -172,130 +127,111 @@
 <script src="styles/KotaManado_1_style.js"></script>
 <script src="styles/Kelurahan_2_style.js"></script>
 <script src="styles/Kecamatan_3_style.js"></script>
+<script src="styles/Titik_4_style.js"></script>
 <script src="styles/Bangunan_5_style.js"></script>
 <script src="styles/Fasilitas_Ekonomi_6_style.js"></script>
 <script src="styles/Jalan_Utama_7_style.js"></script>
 <script src="styles/Info_8_style.js"></script>
 <script src="./resources/Autolinker.min.js"></script>
+<script src="./layers/layers.js"></script>
 
 <script>
-// ===== UMKM PIN STYLE =====
+// === OVERRIDE: Kecamatan transparent by default, colored on click ===
+var selectedKec = null;
+var kecOrigColors = {
+    'Bunaken':          'rgba(146,223,64,0.75)',
+    'Bunaken Kepulauan':'rgba(171,119,229,0.75)',
+    'Malalayang':       'rgba(83,205,201,0.75)',
+    'Mapanget':         'rgba(237,107,111,0.75)',
+    'Paal Dua':         'rgba(60,145,219,0.75)',
+    'Sario':            'rgba(55,61,236,0.75)',
+    'Singkil':          'rgba(210,119,35,0.75)',
+    'Tikala':           'rgba(228,139,186,0.75)',
+    'Tuminiting':       'rgba(114,215,163,0.75)',
+    'Wanea':            'rgba(58,233,55,0.75)',
+    'Wenang':           'rgba(225,223,91,0.75)'
+};
+
+function kecStyle(feature) {
+    var nm = feature.get('nm_kecamat') || '';
+    var isSel = feature === selectedKec;
+    return [new ol.style.Style({
+        stroke: new ol.style.Stroke({
+            color: isSel ? 'rgba(255,255,255,0.95)' : 'rgba(80,20,60,0.6)',
+            width: isSel ? 2.5 : 1
+        }),
+        fill: new ol.style.Fill({
+            color: isSel ? (kecOrigColors[nm]||'rgba(180,80,100,0.7)') : 'rgba(0,0,0,0)'
+        }),
+        text: new ol.style.Text({
+            text: nm,
+            font: "bold 13px 'Segoe UI',sans-serif",
+            fill: new ol.style.Fill({color: isSel ? '#fff' : '#2d0a1e'}),
+            stroke: new ol.style.Stroke({color: isSel ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.85)', width:3})
+        })
+    })];
+}
+// Apply transparent style to kecamatan
+lyr_Kecamatan_3.setStyle(kecStyle);
+// Also set kecamatan interactive
+lyr_Kecamatan_3.set('interactive', true);
+
+// === PIN STYLE for Titik ===
 var umkmCfg = {
-    'Kios':    {color:'#b648b0', dark:'#7a1f76', emoji:'🏪'},
-    'Warung':  {color:'#2255e0', dark:'#0d2eb5', emoji:'🍽️'},
-    'Bengkel': {color:'#3a7bd5', dark:'#1a4a8a', emoji:'🔧'}
+    'Kios':    {color:'#b648b0',dark:'#7a1f76',emoji:'🏪'},
+    'Warung':  {color:'#2255e0',dark:'#0d2eb5',emoji:'🍽️'},
+    'Bengkel': {color:'#3a7bd5',dark:'#1a4a8a',emoji:'🔧'}
 };
 var pinCache = {};
 function makeSVGPin(jenis) {
     if (pinCache[jenis]) return pinCache[jenis];
-    var cfg = umkmCfg[jenis] || {color:'#888',dark:'#444',emoji:'📍'};
+    var cfg = umkmCfg[jenis]||{color:'#888',dark:'#444',emoji:'📍'};
     var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="42" viewBox="0 0 32 42">' +
-        '<defs><radialGradient id="rg'+jenis+'" cx="38%" cy="32%"><stop offset="0%" stop-color="'+cfg.color+'"/><stop offset="100%" stop-color="'+cfg.dark+'"/></radialGradient></defs>' +
+        '<defs><radialGradient id="rg'+jenis+'" cx="38%" cy="32%">' +
+        '<stop offset="0%" stop-color="'+cfg.color+'"/><stop offset="100%" stop-color="'+cfg.dark+'"/>' +
+        '</radialGradient></defs>' +
         '<ellipse cx="16" cy="40" rx="6" ry="2" fill="rgba(0,0,0,0.22)"/>' +
         '<path d="M16 1C8 1 1 8 1 16C1 26 16 41 16 41C16 41 31 26 31 16C31 8 24 1 16 1Z" fill="url(#rg'+jenis+')" stroke="rgba(0,0,0,0.15)" stroke-width="1"/>' +
         '<circle cx="16" cy="16" r="8" fill="rgba(255,255,255,0.18)"/>' +
         '<text x="16" y="20" text-anchor="middle" font-size="13" font-family="serif">'+cfg.emoji+'</text>' +
         '</svg>';
     var blob = new Blob([svg],{type:'image/svg+xml'});
-    var url = URL.createObjectURL(blob);
     pinCache[jenis] = new ol.style.Style({
-        image: new ol.style.Icon({src:url, anchor:[0.5,1], anchorXUnits:'fraction', anchorYUnits:'fraction'})
+        image: new ol.style.Icon({src:URL.createObjectURL(blob),anchor:[0.5,1],anchorXUnits:'fraction',anchorYUnits:'fraction'})
     });
     return pinCache[jenis];
 }
-var style_Titik_4 = function(f){ return [makeSVGPin(f.get('jenisusaha')||'Kios')]; };
+lyr_Titik_4.setStyle(function(f){ return [makeSVGPin(f.get('jenisusaha')||'Kios')]; });
+lyr_Titik_4.set('interactive', true);
+lyr_Fasilitas_Ekonomi_6.set('interactive', true);
 
-// ===== KECAMATAN STYLE: transparan default, berwarna jika dipilih =====
-var selectedKec = null;
-// colors from original Kecamatan_3_style.js
-var kecColors = {
-    'Bunaken':'rgba(146,223,64,0.7)',
-    'Bunaken Kepulauan':'rgba(171,119,229,0.7)',
-    'Malalayang':'rgba(83,205,201,0.7)',
-    'Mapanget':'rgba(237,107,111,0.7)',
-    'Paal Dua':'rgba(60,145,219,0.7)',
-    'Sario':'rgba(55,61,236,0.7)',
-    'Singkil':'rgba(210,119,35,0.7)',
-    'Tikala':'rgba(228,139,186,0.7)',
-    'Tuminiting':'rgba(114,215,163,0.7)',
-    'Wanea':'rgba(58,233,55,0.7)',
-    'Wenang':'rgba(225,223,91,0.7)'
-};
-function kecStyle(feature) {
-    var nm = feature.get('nm_kecamat') || '';
-    var isSelected = feature === selectedKec;
-    var fillColor = isSelected ? (kecColors[nm] || 'rgba(180,80,100,0.6)') : 'rgba(0,0,0,0)';
-    var strokeColor = isSelected ? 'rgba(255,255,255,0.9)' : 'rgba(60,10,60,0.5)';
-    var strokeWidth = isSelected ? 2.5 : 1;
-    return [new ol.style.Style({
-        stroke: new ol.style.Stroke({color:strokeColor, width:strokeWidth}),
-        fill: new ol.style.Fill({color:fillColor}),
-        text: new ol.style.Text({
-            text: nm,
-            font: "bold 13px 'Segoe UI',sans-serif",
-            fill: new ol.style.Fill({color: isSelected ? '#fff' : '#3b0a2e'}),
-            stroke: new ol.style.Stroke({color: isSelected ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.8)', width:3})
-        })
-    })];
-}
-
-// ===== BUILD LAYERS =====
-function makeLayer(json, style, opts) {
-    var fmt = new ol.format.GeoJSON();
-    var feats = fmt.readFeatures(json,{dataProjection:'EPSG:4326',featureProjection:'EPSG:3857'});
-    var src = new ol.source.Vector({attributions:' '});
-    src.addFeatures(feats);
-    var layer = new ol.layer.Vector(Object.assign({source:src,style:style,declutter:false},opts||{}));
-    return {layer:layer, features:feats};
-}
-
-var o_kota  = makeLayer(json_KotaManado_1, style_KotaManado_1, {interactive:false});
-var o_kel   = makeLayer(json_Kelurahan_2, style_Kelurahan_2, {interactive:false});
-var o_kec   = makeLayer(json_Kecamatan_3, kecStyle, {interactive:true});
-var o_ban   = makeLayer(json_Bangunan_5, style_Bangunan_5, {interactive:false});
-var o_jal   = makeLayer(json_Jalan_Utama_7, style_Jalan_Utama_7, {interactive:false});
-var o_fas   = makeLayer(json_Fasilitas_Ekonomi_6, style_Fasilitas_Ekonomi_6, {interactive:true});
-var o_titik = makeLayer(json_Titik_4, style_Titik_4, {interactive:true, declutter:false});
-var o_info  = makeLayer(json_Info_8, style_Info_8, {interactive:false, opacity:0});
-
-var lyr_KotaManado_1 = o_kota.layer;
-var lyr_Kelurahan_2  = o_kel.layer;
-var lyr_Kecamatan_3  = o_kec.layer;
-var lyr_Bangunan_5   = o_ban.layer;
-var lyr_Jalan_Utama_7= o_jal.layer;
-var lyr_Fasilitas_Ekonomi_6 = o_fas.layer;
-var lyr_Titik_4      = o_titik.layer;
-var lyr_Info_8       = o_info.layer;
-
-// Info lookup
-var infoByKec = {};
-o_info.features.forEach(function(f){
-    var nm = f.get('nm_kecamat');
-    if(nm) infoByKec[nm]={jumlah_umkm:f.get('jumlah_umkm')||0, nm_kelurah_count:f.get('nm_kelurah_count')||0};
-});
-
-// Potensi kategori
-function potensikategori(props) {
-    if (props.shop === 'mall') return {kat:'Pusat Perbelanjaan', alasan:'Lokasi dengan lalu lintas pembeli tinggi — cocok untuk UMKM membuka kios atau berjualan di sekitarnya.'};
-    if (props.office === 'government') return {kat:'Kantor Pemerintah', alasan:'Area perkantoran dengan banyak pegawai — potensi pasar tetap untuk warung dan kios keperluan harian.'};
-    if (props.amenity === 'marketplace') return {kat:'Pasar / Marketplace', alasan:'Pusat transaksi jual beli — sangat strategis untuk pengembangan UMKM perdagangan dan kuliner.'};
-    return {kat:'Fasilitas Ekonomi', alasan:'Lokasi strategis dengan aktivitas ekonomi tinggi yang berpotensi mendukung pengembangan UMKM sekitar.'};
-}
-
-// ===== MAP =====
+// === MAP (use original layersList from layers.js) ===
 var map = new ol.Map({
-    target:'map', renderer:'canvas',
-    layers:[
-        lyr_KotaManado_1, lyr_Kelurahan_2, lyr_Bangunan_5,
-        lyr_Jalan_Utama_7, lyr_Kecamatan_3,
-        lyr_Fasilitas_Ekonomi_6, lyr_Titik_4, lyr_Info_8
-    ],
-    view: new ol.View({maxZoom:28,minZoom:1})
+    target: 'map',
+    renderer: 'canvas',
+    layers: layersList,
+    view: new ol.View({maxZoom:28, minZoom:1})
 });
-map.getView().fit([13891823.533604,161148.160461,13913777.205052,174477.489826],map.getSize());
+map.getView().fit([13891823.533604,161148.160461,13913777.205052,174477.489826], map.getSize());
 map.getView().setProperties({constrainResolution:true});
 
-// ===== PANEL =====
+// === INFO DATA ===
+var infoByKec = {};
+var fmt_info = new ol.format.GeoJSON();
+var feats_info = fmt_info.readFeatures(json_Info_8,{dataProjection:'EPSG:4326',featureProjection:'EPSG:3857'});
+feats_info.forEach(function(f){
+    var nm=f.get('nm_kecamat');
+    if(nm) infoByKec[nm]={jumlah_umkm:f.get('jumlah_umkm')||0,nm_kelurah_count:f.get('nm_kelurah_count')||0};
+});
+
+function potensikategori(props){
+    if(props.shop==='mall') return {kat:'Pusat Perbelanjaan',alasan:'Lokasi dengan lalu lintas pembeli tinggi — sangat cocok untuk UMKM membuka kios atau berjualan di sekitarnya.',cocok:'Kios, Warung, Kerajinan'};
+    if(props.amenity==='marketplace') return {kat:'Pasar / Marketplace',alasan:'Pusat transaksi jual beli — sangat strategis untuk pengembangan UMKM perdagangan dan kuliner.',cocok:'Semua Jenis UMKM'};
+    if(props.office==='government') return {kat:'Kantor Pemerintah',alasan:'Area perkantoran dengan banyak pegawai aktif — pasar tetap harian untuk warung makan dan kios.',cocok:'Warung Makan, Kios ATK'};
+    return {kat:'Fasilitas Ekonomi',alasan:'Lokasi strategis dengan aktivitas ekonomi tinggi yang berpotensi mendukung UMKM di sekitarnya.',cocok:'Semua Jenis UMKM'};
+}
+
+// === PANEL ===
 var panel=document.getElementById('detail-panel');
 var elHdr=document.getElementById('panel-header');
 var elIcon=document.getElementById('panel-icon');
@@ -316,8 +252,7 @@ function openPanel(icon,type,name,sub,hdrBg,bodyHtml){
 
 function openUmkm(name,jenis){
     var cfg=umkmCfg[jenis]||{color:'#555',dark:'#333',emoji:'📍'};
-    openPanel(
-        cfg.emoji, jenis.toUpperCase(), name, 'Kota Manado, Sulawesi Utara',
+    openPanel(cfg.emoji,jenis.toUpperCase(),name,'Kota Manado, Sulawesi Utara',
         'linear-gradient(135deg,'+cfg.dark+','+cfg.color+')',
         '<div class="sec-title">Informasi Usaha</div>'+
         '<div class="drow"><span class="dlbl">Nama Usaha</span><span class="dval">'+name+'</span></div>'+
@@ -328,8 +263,7 @@ function openUmkm(name,jenis){
 
 function openKec(nm,kd){
     var info=infoByKec[nm]||{};
-    openPanel(
-        '🗺️','KECAMATAN',nm,'Kota Manado',
+    openPanel('🗺️','KECAMATAN',nm,'Kota Manado',
         'linear-gradient(135deg,#0d0118,#5a1535)',
         '<div class="sec-title">Statistik Wilayah</div>'+
         '<div class="stat-grid">'+
@@ -346,19 +280,16 @@ function openKec(nm,kd){
 function openPotensi(props){
     var name=props.name||props.amenity||props.office||'Fasilitas Ekonomi';
     var info=potensikategori(props);
-    openPanel(
-        '⭐','POTENSI PENGEMBANGAN',name,'Kota Manado, Sulawesi Utara',
-        'linear-gradient(135deg,#1a0a00,#7a3800)',
-        '<div class="potensi-box"><strong>💡 MENGAPA INI POTENSI?</strong>'+info.alasan+'</div>'+
+    openPanel('⭐','POTENSI PENGEMBANGAN',name,'Kota Manado, Sulawesi Utara',
+        'linear-gradient(135deg,#1a0800,#7a3800)',
+        '<div class="potensi-box"><strong>💡 Mengapa ini potensi?</strong>'+info.alasan+'</div>'+
         '<div class="sec-title">Detail Lokasi</div>'+
         '<div class="drow"><span class="dlbl">Kategori</span><span class="dval">'+info.kat+'</span></div>'+
         '<div class="drow"><span class="dlbl">Nama</span><span class="dval">'+name+'</span></div>'+
         (props.opening_ho?'<div class="drow"><span class="dlbl">Jam Buka</span><span class="dval">'+props.opening_ho+'</span></div>':'')+
         (props.addr_stree?'<div class="drow"><span class="dlbl">Jalan</span><span class="dval">'+props.addr_stree+'</span></div>':'')+
         '<div class="sec-title">Rekomendasi UMKM</div>'+
-        '<div class="drow"><span class="dlbl">Cocok untuk</span><span class="dval">'+
-            (props.shop==='mall'?'Kios, Warung, Kerajinan':props.office==='government'?'Warung Makan, Kios ATK':'Semua Jenis UMKM')+
-        '</span></div>'
+        '<div class="drow"><span class="dlbl">Cocok untuk</span><span class="dval">'+info.cocok+'</span></div>'
     );
 }
 
@@ -368,30 +299,32 @@ document.getElementById('panel-close').onclick=function(){
     lyr_Kecamatan_3.setStyle(kecStyle);
 };
 
-// ===== CLICK =====
+// === CLICK ===
 map.on('singleclick',function(evt){
     var done=false;
-    // 1. Titik UMKM
     map.forEachFeatureAtPixel(evt.pixel,function(f,l){
-        if(done||l!==lyr_Titik_4)return;
-        done=true;
-        openUmkm(f.get('name')||'Tanpa Nama',f.get('jenisusaha')||'Kios');
+        if(done) return;
+        if(l===lyr_Titik_4){
+            done=true;
+            openUmkm(f.get('name')||'Tanpa Nama',f.get('jenisusaha')||'Kios');
+        }
     },{hitTolerance:10});
-    // 2. Potensi (Fasilitas Ekonomi)
     if(!done) map.forEachFeatureAtPixel(evt.pixel,function(f,l){
-        if(done||l!==lyr_Fasilitas_Ekonomi_6)return;
-        done=true;
-        var p={};
-        f.getKeys().forEach(function(k){p[k]=f.get(k);});
-        openPotensi(p);
+        if(done) return;
+        if(l===lyr_Fasilitas_Ekonomi_6){
+            done=true;
+            var p={};f.getKeys().forEach(function(k){p[k]=f.get(k);});
+            openPotensi(p);
+        }
     },{hitTolerance:8});
-    // 3. Kecamatan
     if(!done) map.forEachFeatureAtPixel(evt.pixel,function(f,l){
-        if(done||l!==lyr_Kecamatan_3)return;
-        done=true;
-        selectedKec=f;
-        lyr_Kecamatan_3.setStyle(kecStyle);
-        openKec(f.get('nm_kecamat')||'',f.get('kd_kecamat')||'');
+        if(done) return;
+        if(l===lyr_Kecamatan_3){
+            done=true;
+            selectedKec=f;
+            lyr_Kecamatan_3.setStyle(kecStyle);
+            openKec(f.get('nm_kecamat')||'',f.get('kd_kecamat')||'');
+        }
     },{hitTolerance:4});
     if(!done){
         panel.classList.remove('open');
