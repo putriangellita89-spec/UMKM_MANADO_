@@ -232,7 +232,7 @@ function kecStyle(feature) {
     var baseColor = kecColors[nm] || 'rgba(180,80,120,';
     var isSel = feature === selectedKec;
     var isHov = feature === hoveredKec && !isSel;
-    var fillColor = (isSel || isHov) ? baseColor+'0.82)' : 'rgba(0,0,0,0)';
+    var fillColor = (isSel || isHov) ? baseColor+'0.82)' : baseColor+'0.22)';
     var strokeW = (isSel || isHov) ? 2.2 : 1;
     var strokeC = (isSel || isHov) ? 'rgba(255,255,255,0.85)' : 'rgba(80,20,60,0.5)';
     var styles = [new ol.style.Style({
