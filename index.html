@@ -202,13 +202,9 @@
 // KotaManado - completely hidden (no border, no fill, no label)
 lyr_KotaManado_1.setStyle(function() { return []; });
 
-// Kelurahan - only faint dashed border, no label, no fill
-lyr_Kelurahan_2.setStyle(function(feature) {
-    return [new ol.style.Style({
-        stroke: new ol.style.Stroke({color:'rgba(100,30,80,0.25)', width:0.5, lineDash:[3,6]}),
-        fill: new ol.style.Fill({color:'rgba(0,0,0,0)'})
-    })];
-});
+// Kelurahan - completely hidden (causes lag and green box)
+lyr_Kelurahan_2.setStyle(function() { return []; });
+lyr_Kelurahan_2.setVisible(false);
 
 // Info - invisible
 lyr_Info_8.setStyle(function(){ return []; });
@@ -236,9 +232,9 @@ function kecStyle(feature) {
     var baseColor = kecColors[nm] || 'rgba(180,80,120,';
     var isSel = feature === selectedKec;
     var isHov = feature === hoveredKec && !isSel;
-    var fillColor = isSel ? baseColor+'0.85)' : isHov ? baseColor+'0.4)' : 'rgba(0,0,0,0)';
-    var strokeW = isSel ? 2.5 : isHov ? 1.8 : 1;
-    var strokeC = isSel ? 'rgba(255,255,255,0.9)' : isHov ? 'rgba(255,255,255,0.6)' : 'rgba(80,20,60,0.5)';
+    var fillColor = (isSel || isHov) ? baseColor+'0.82)' : 'rgba(0,0,0,0)';
+    var strokeW = (isSel || isHov) ? 2.2 : 1;
+    var strokeC = (isSel || isHov) ? 'rgba(255,255,255,0.85)' : 'rgba(80,20,60,0.5)';
     var styles = [new ol.style.Style({
         stroke: new ol.style.Stroke({color:strokeC, width:strokeW}),
         fill: new ol.style.Fill({color:fillColor})
@@ -250,8 +246,9 @@ function kecStyle(feature) {
                 text: nm,
                 font: "bold 14px 'Segoe UI',sans-serif",
                 fill: new ol.style.Fill({color:'#fff'}),
-                stroke: new ol.style.Stroke({color:'rgba(0,0,0,0.6)',width:3}),
-                overflow: true
+                stroke: new ol.style.Stroke({color:'rgba(0,0,0,0.55)',width:3}),
+                overflow: true,
+                placement: 'point'
             })
         }));
     }
