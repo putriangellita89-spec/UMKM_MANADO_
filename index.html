@@ -26,42 +26,102 @@
 
         #map{padding-top:58px;}
 
+        /* PANEL */
         #detail-panel{
-            position:fixed;top:58px;right:0;width:340px;height:calc(100vh - 58px);
-            background:#fff;z-index:900;box-shadow:-6px 0 32px rgba(0,0,0,0.22);
+            position:fixed;top:58px;right:0;width:320px;height:calc(100vh - 58px);
+            background:#1a1a2e;z-index:900;
+            box-shadow:-6px 0 32px rgba(0,0,0,0.4);
             transform:translateX(105%);transition:transform 0.35s cubic-bezier(.4,0,.2,1);
             display:flex;flex-direction:column;overflow:hidden;
         }
         #detail-panel.open{transform:translateX(0);}
-        #panel-header{padding:22px 20px 16px;color:#fff;position:relative;flex-shrink:0;}
-        #panel-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:15px;cursor:pointer;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
-        #panel-close:hover{background:rgba(255,255,255,0.28);}
-        .panel-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;background:rgba(255,255,255,0.18);border-radius:20px;padding:3px 12px;margin-bottom:10px;}
-        #panel-icon{font-size:38px;display:block;margin-bottom:6px;}
-        #panel-name{font-size:19px;font-weight:800;line-height:1.25;margin-bottom:4px;}
-        #panel-sub{font-size:12px;opacity:0.72;}
-        #panel-body{flex:1;overflow-y:auto;padding:16px 20px 28px;background:#f7f7fa;}
+
+        #panel-header{padding:22px 20px 18px;color:#fff;position:relative;flex-shrink:0;}
+        #panel-close{
+            position:absolute;top:12px;right:12px;
+            background:rgba(255,255,255,0.12);border:none;color:#fff;
+            font-size:15px;cursor:pointer;border-radius:50%;
+            width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+            transition:background 0.2s;
+        }
+        #panel-close:hover{background:rgba(255,255,255,0.25);}
+        .panel-badge{
+            display:inline-block;font-size:9px;font-weight:700;
+            letter-spacing:1.8px;text-transform:uppercase;
+            background:rgba(255,255,255,0.15);border-radius:20px;
+            padding:3px 12px;margin-bottom:10px;color:#fff;
+        }
+        #panel-icon{font-size:36px;display:block;margin-bottom:8px;}
+        #panel-name{font-size:19px;font-weight:800;line-height:1.25;margin-bottom:4px;color:#fff;}
+        #panel-sub{font-size:12px;color:rgba(255,255,255,0.6);}
+
+        /* PANEL BODY - dark theme */
+        #panel-body{
+            flex:1;overflow-y:auto;
+            padding:16px 20px 28px;
+            background:#1a1a2e;
+        }
         .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}
-        .stat-card{background:#fff;border-radius:14px;padding:16px 10px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.07);}
-        .stat-val{font-size:26px;font-weight:900;color:#3b0a2e;}
-        .stat-lbl{font-size:11px;color:#aaa;margin-top:2px;}
-        .sec-title{font-size:9px;font-weight:700;letter-spacing:1.5px;color:#bbb;text-transform:uppercase;margin:16px 0 10px;}
-        .drow{display:flex;justify-content:space-between;align-items:flex-start;padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:13px;}
+        .stat-card{
+            background:#252540;border-radius:14px;
+            padding:16px 10px;text-align:center;
+            border:1px solid rgba(255,255,255,0.06);
+        }
+        .stat-val{font-size:26px;font-weight:900;color:#d494f0;}
+        .stat-lbl{font-size:11px;color:rgba(255,255,255,0.45);margin-top:2px;}
+        .sec-title{
+            font-size:9px;font-weight:700;letter-spacing:1.5px;
+            color:rgba(255,255,255,0.3);text-transform:uppercase;
+            margin:16px 0 10px;
+        }
+        .drow{
+            display:flex;justify-content:space-between;align-items:center;
+            padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.07);
+            font-size:13px;
+        }
         .drow:last-child{border-bottom:none;}
-        .dlbl{color:#aaa;flex-shrink:0;margin-right:8px;}
-        .dval{font-weight:700;color:#1a1a1a;text-align:right;}
-        .chip{display:inline-block;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;}
-        .potensi-box{background:linear-gradient(135deg,#fff8f0,#fff3e0);border-left:4px solid #e67e22;border-radius:0 12px 12px 0;padding:14px 16px;margin:14px 0;font-size:13px;line-height:1.6;color:#5d3a00;}
-        .potensi-box strong{display:block;font-size:11px;color:#e67e22;margin-bottom:6px;letter-spacing:0.5px;text-transform:uppercase;}
+        .dlbl{color:rgba(255,255,255,0.45);flex-shrink:0;margin-right:8px;}
+        .dval{font-weight:700;color:#e8e8f8;text-align:right;}
+        .chip{
+            display:inline-block;padding:4px 14px;
+            border-radius:20px;font-size:12px;font-weight:700;
+        }
+        .potensi-box{
+            background:rgba(230,126,34,0.12);
+            border-left:3px solid #e67e22;
+            border-radius:0 10px 10px 0;
+            padding:14px 16px;margin:14px 0;
+            font-size:13px;line-height:1.65;color:rgba(255,220,180,0.9);
+        }
+        .potensi-box strong{
+            display:block;font-size:10px;color:#e67e22;
+            margin-bottom:6px;letter-spacing:0.8px;text-transform:uppercase;
+        }
 
-        #legend-box{position:fixed;left:14px;bottom:14px;background:linear-gradient(160deg,#0d0118,#2d0820);color:#fff;border-radius:16px;box-shadow:0 6px 28px rgba(0,0,0,0.4);padding:16px 20px;z-index:800;min-width:180px;}
-        #legend-box h3{font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.45);text-transform:uppercase;margin-bottom:12px;}
-        .litem{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-size:13px;color:#fff;}
+        /* LEGEND */
+        #legend-box{
+            position:fixed;left:14px;bottom:14px;
+            background:rgba(13,1,24,0.92);
+            color:#fff;border-radius:16px;
+            box-shadow:0 6px 28px rgba(0,0,0,0.5);
+            padding:14px 18px;z-index:800;min-width:180px;
+            backdrop-filter:blur(8px);
+            border:1px solid rgba(255,255,255,0.08);
+        }
+        #legend-box h3{font-size:9px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:11px;}
+        .litem{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-size:13px;color:rgba(255,255,255,0.85);}
         .litem:last-child{margin-bottom:0;}
-        .lpin{width:20px;height:26px;flex-shrink:0;}
-        .lcircle{width:20px;height:20px;flex-shrink:0;}
+        .lpin{width:18px;height:24px;flex-shrink:0;}
+        .lcircle{width:18px;height:18px;flex-shrink:0;}
 
-        #hint{position:fixed;right:16px;bottom:16px;background:linear-gradient(135deg,rgba(13,1,24,0.92),rgba(59,10,46,0.92));color:#fff;border-radius:24px;padding:9px 18px;font-size:12px;z-index:800;pointer-events:none;backdrop-filter:blur(6px);}
+        #hint{
+            position:fixed;right:16px;bottom:16px;
+            background:rgba(13,1,24,0.88);
+            color:rgba(255,255,255,0.8);border-radius:24px;
+            padding:9px 18px;font-size:12px;z-index:800;
+            pointer-events:none;backdrop-filter:blur(6px);
+            border:1px solid rgba(255,255,255,0.08);
+        }
 
         .ol-popup{display:none!important;}
         .ol-zoom{top:70px!important;}
@@ -90,28 +150,27 @@
 </div>
 
 <div id="legend-box">
-    <h3>Jenis UMKM</h3>
+    <h3>Keterangan</h3>
     <div class="litem">
-        <svg class="lpin" viewBox="0 0 20 26"><ellipse cx="10" cy="24" rx="5" ry="2" fill="rgba(0,0,0,0.2)"/><path d="M10 0C4.5 0 0 4.5 0 10C0 17 10 26 10 26S20 17 20 10C20 4.5 15.5 0 10 0Z" fill="#b648b0"/><text x="10" y="13" text-anchor="middle" font-size="10" font-family="serif">🏪</text></svg>
+        <svg class="lpin" viewBox="0 0 18 24"><ellipse cx="9" cy="22" rx="4" ry="1.5" fill="rgba(0,0,0,0.3)"/><path d="M9 0C4 0 0 4 0 9C0 15 9 24 9 24S18 15 18 9C18 4 14 0 9 0Z" fill="#b648b0"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif">🏪</text></svg>
         <span>Kios</span>
     </div>
     <div class="litem">
-        <svg class="lpin" viewBox="0 0 20 26"><ellipse cx="10" cy="24" rx="5" ry="2" fill="rgba(0,0,0,0.2)"/><path d="M10 0C4.5 0 0 4.5 0 10C0 17 10 26 10 26S20 17 20 10C20 4.5 15.5 0 10 0Z" fill="#2255e0"/><text x="10" y="13" text-anchor="middle" font-size="10" font-family="serif">🍽️</text></svg>
+        <svg class="lpin" viewBox="0 0 18 24"><ellipse cx="9" cy="22" rx="4" ry="1.5" fill="rgba(0,0,0,0.3)"/><path d="M9 0C4 0 0 4 0 9C0 15 9 24 9 24S18 15 18 9C18 4 14 0 9 0Z" fill="#2255e0"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif">🍽️</text></svg>
         <span>Warung</span>
     </div>
     <div class="litem">
-        <svg class="lpin" viewBox="0 0 20 26"><ellipse cx="10" cy="24" rx="5" ry="2" fill="rgba(0,0,0,0.2)"/><path d="M10 0C4.5 0 0 4.5 0 10C0 17 10 26 10 26S20 17 20 10C20 4.5 15.5 0 10 0Z" fill="#3a7bd5"/><text x="10" y="13" text-anchor="middle" font-size="10" font-family="serif">🔧</text></svg>
+        <svg class="lpin" viewBox="0 0 18 24"><ellipse cx="9" cy="22" rx="4" ry="1.5" fill="rgba(0,0,0,0.3)"/><path d="M9 0C4 0 0 4 0 9C0 15 9 24 9 24S18 15 18 9C18 4 14 0 9 0Z" fill="#3a7bd5"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif">🔧</text></svg>
         <span>Bengkel</span>
     </div>
     <div class="litem">
-        <svg class="lcircle" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="white" stroke="#333" stroke-width="2"/><circle cx="10" cy="10" r="4" fill="#333"/></svg>
+        <svg class="lcircle" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7" fill="white" stroke="#333" stroke-width="2"/><circle cx="9" cy="9" r="3.5" fill="#333"/></svg>
         <span>Potensi Pengembangan</span>
     </div>
 </div>
 
-<div id="hint">👆 Klik titik atau wilayah untuk lihat detail</div>
+<div id="hint">👆 Sentuh area atau titik untuk detail</div>
 
-<!-- Load ALL original scripts exactly as original index.html -->
 <script src="resources/qgis2web_expressions.js"></script>
 <script src="./resources/functions.js"></script>
 <script src="./resources/ol.js"></script>
@@ -136,47 +195,67 @@
 <script src="./layers/layers.js"></script>
 
 <script>
-// === OVERRIDE: Kecamatan transparent by default, colored on click ===
+// ===== MAKE ALL POLYGON LAYERS TRANSPARENT (only border) =====
+// KotaManado - only border, no fill
+lyr_KotaManado_1.setStyle(function(feature) {
+    return [new ol.style.Style({
+        stroke: new ol.style.Stroke({color:'rgba(60,10,60,0.5)', width:1.5}),
+        fill: new ol.style.Fill({color:'rgba(0,0,0,0)'})
+    })];
+});
+
+// Kelurahan - only border, no fill
+lyr_Kelurahan_2.setStyle(function(feature) {
+    return [new ol.style.Style({
+        stroke: new ol.style.Stroke({color:'rgba(80,20,80,0.35)', width:0.7, lineDash:[4,4]}),
+        fill: new ol.style.Fill({color:'rgba(0,0,0,0)'})
+    })];
+});
+
+// Info - invisible
+lyr_Info_8.setStyle(function(){ return []; });
+lyr_Info_8.setOpacity(0);
+
+// ===== KECAMATAN: transparent → hover color → click color =====
+var hoveredKec = null;
 var selectedKec = null;
-var kecOrigColors = {
-    'Bunaken':          'rgba(146,223,64,0.75)',
-    'Bunaken Kepulauan':'rgba(171,119,229,0.75)',
-    'Malalayang':       'rgba(83,205,201,0.75)',
-    'Mapanget':         'rgba(237,107,111,0.75)',
-    'Paal Dua':         'rgba(60,145,219,0.75)',
-    'Sario':            'rgba(55,61,236,0.75)',
-    'Singkil':          'rgba(210,119,35,0.75)',
-    'Tikala':           'rgba(228,139,186,0.75)',
-    'Tuminiting':       'rgba(114,215,163,0.75)',
-    'Wanea':            'rgba(58,233,55,0.75)',
-    'Wenang':           'rgba(225,223,91,0.75)'
+var kecColors = {
+    'Bunaken':          'rgba(146,223,64,',
+    'Bunaken Kepulauan':'rgba(171,119,229,',
+    'Malalayang':       'rgba(83,205,201,',
+    'Mapanget':         'rgba(237,107,111,',
+    'Paal Dua':         'rgba(60,145,219,',
+    'Sario':            'rgba(55,61,236,',
+    'Singkil':          'rgba(210,119,35,',
+    'Tikala':           'rgba(228,139,186,',
+    'Tuminiting':       'rgba(114,215,163,',
+    'Wanea':            'rgba(58,233,55,',
+    'Wenang':           'rgba(225,223,91,'
 };
 
 function kecStyle(feature) {
     var nm = feature.get('nm_kecamat') || '';
+    var baseColor = kecColors[nm] || 'rgba(180,80,120,';
     var isSel = feature === selectedKec;
+    var isHov = feature === hoveredKec && !isSel;
+    var fillColor = isSel ? baseColor+'0.72)' : isHov ? baseColor+'0.45)' : 'rgba(0,0,0,0)';
+    var strokeW = isSel ? 2.5 : isHov ? 1.8 : 1;
+    var strokeC = isSel ? 'rgba(255,255,255,0.9)' : isHov ? 'rgba(255,255,255,0.6)' : 'rgba(80,20,60,0.5)';
     return [new ol.style.Style({
-        stroke: new ol.style.Stroke({
-            color: isSel ? 'rgba(255,255,255,0.95)' : 'rgba(80,20,60,0.6)',
-            width: isSel ? 2.5 : 1
-        }),
-        fill: new ol.style.Fill({
-            color: isSel ? (kecOrigColors[nm]||'rgba(180,80,100,0.7)') : 'rgba(0,0,0,0)'
-        }),
+        stroke: new ol.style.Stroke({color:strokeC, width:strokeW}),
+        fill: new ol.style.Fill({color:fillColor}),
         text: new ol.style.Text({
             text: nm,
             font: "bold 13px 'Segoe UI',sans-serif",
-            fill: new ol.style.Fill({color: isSel ? '#fff' : '#2d0a1e'}),
-            stroke: new ol.style.Stroke({color: isSel ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.85)', width:3})
+            fill: new ol.style.Fill({color: (isSel||isHov) ? '#fff' : '#2d0a1e'}),
+            stroke: new ol.style.Stroke({color:(isSel||isHov)?'rgba(0,0,0,0.5)':'rgba(255,255,255,0.85)',width:3})
         })
     })];
 }
-// Apply transparent style to kecamatan
 lyr_Kecamatan_3.setStyle(kecStyle);
-// Also set kecamatan interactive
 lyr_Kecamatan_3.set('interactive', true);
 
-// === PIN STYLE for Titik ===
+// ===== PIN STYLE for Titik =====
 var umkmCfg = {
     'Kios':    {color:'#b648b0',dark:'#7a1f76',emoji:'🏪'},
     'Warung':  {color:'#2255e0',dark:'#0d2eb5',emoji:'🍽️'},
@@ -205,33 +284,31 @@ lyr_Titik_4.setStyle(function(f){ return [makeSVGPin(f.get('jenisusaha')||'Kios'
 lyr_Titik_4.set('interactive', true);
 lyr_Fasilitas_Ekonomi_6.set('interactive', true);
 
-// === MAP (use original layersList from layers.js) ===
+// ===== MAP =====
 var map = new ol.Map({
-    target: 'map',
-    renderer: 'canvas',
+    target:'map', renderer:'canvas',
     layers: layersList,
-    view: new ol.View({maxZoom:28, minZoom:1})
+    view: new ol.View({maxZoom:28,minZoom:1})
 });
-map.getView().fit([13891823.533604,161148.160461,13913777.205052,174477.489826], map.getSize());
+map.getView().fit([13891823.533604,161148.160461,13913777.205052,174477.489826],map.getSize());
 map.getView().setProperties({constrainResolution:true});
 
-// === INFO DATA ===
+// ===== INFO DATA =====
 var infoByKec = {};
 var fmt_info = new ol.format.GeoJSON();
-var feats_info = fmt_info.readFeatures(json_Info_8,{dataProjection:'EPSG:4326',featureProjection:'EPSG:3857'});
-feats_info.forEach(function(f){
+fmt_info.readFeatures(json_Info_8,{dataProjection:'EPSG:4326',featureProjection:'EPSG:3857'}).forEach(function(f){
     var nm=f.get('nm_kecamat');
-    if(nm) infoByKec[nm]={jumlah_umkm:f.get('jumlah_umkm')||0,nm_kelurah_count:f.get('nm_kelurah_count')||0};
+    if(nm) infoByKec[nm]={jumlah_umkm:f.get('jumlah_umkm')||0, nm_kelurah_count:f.get('nm_kelurah_count')||0};
 });
 
 function potensikategori(props){
-    if(props.shop==='mall') return {kat:'Pusat Perbelanjaan',alasan:'Lokasi dengan lalu lintas pembeli tinggi — sangat cocok untuk UMKM membuka kios atau berjualan di sekitarnya.',cocok:'Kios, Warung, Kerajinan'};
-    if(props.amenity==='marketplace') return {kat:'Pasar / Marketplace',alasan:'Pusat transaksi jual beli — sangat strategis untuk pengembangan UMKM perdagangan dan kuliner.',cocok:'Semua Jenis UMKM'};
-    if(props.office==='government') return {kat:'Kantor Pemerintah',alasan:'Area perkantoran dengan banyak pegawai aktif — pasar tetap harian untuk warung makan dan kios.',cocok:'Warung Makan, Kios ATK'};
-    return {kat:'Fasilitas Ekonomi',alasan:'Lokasi strategis dengan aktivitas ekonomi tinggi yang berpotensi mendukung UMKM di sekitarnya.',cocok:'Semua Jenis UMKM'};
+    if(props.shop==='mall') return {kat:'Pusat Perbelanjaan',alasan:'Lalu lintas pembeli sangat tinggi — ideal untuk UMKM membuka kios atau berjualan di sekitarnya.',cocok:'Kios, Warung, Kerajinan'};
+    if(props.amenity==='marketplace') return {kat:'Pasar / Marketplace',alasan:'Pusat transaksi jual beli aktif — sangat strategis untuk UMKM perdagangan dan kuliner.',cocok:'Semua Jenis UMKM'};
+    if(props.office==='government') return {kat:'Kantor Pemerintah',alasan:'Banyak pegawai aktif setiap hari — pasar tetap untuk warung makan dan kios keperluan harian.',cocok:'Warung Makan, Kios ATK'};
+    return {kat:'Fasilitas Ekonomi',alasan:'Lokasi strategis dengan aktivitas ekonomi tinggi — berpotensi mendukung UMKM di sekitarnya.',cocok:'Semua Jenis UMKM'};
 }
 
-// === PANEL ===
+// ===== PANEL =====
 var panel=document.getElementById('detail-panel');
 var elHdr=document.getElementById('panel-header');
 var elIcon=document.getElementById('panel-icon');
@@ -252,25 +329,24 @@ function openPanel(icon,type,name,sub,hdrBg,bodyHtml){
 
 function openUmkm(name,jenis){
     var cfg=umkmCfg[jenis]||{color:'#555',dark:'#333',emoji:'📍'};
-    openPanel(cfg.emoji,jenis.toUpperCase(),name,'Kota Manado, Sulawesi Utara',
+    openPanel(cfg.emoji,'KETERANGAN',name,'Kota Manado, Sulawesi Utara',
         'linear-gradient(135deg,'+cfg.dark+','+cfg.color+')',
         '<div class="sec-title">Informasi Usaha</div>'+
-        '<div class="drow"><span class="dlbl">Nama Usaha</span><span class="dval">'+name+'</span></div>'+
-        '<div class="drow"><span class="dlbl">Jenis Usaha</span><span class="dval"><span class="chip" style="background:'+cfg.color+'22;color:'+cfg.color+';">'+jenis+'</span></span></div>'+
+        '<div class="drow"><span class="dlbl">Nama</span><span class="dval">'+name+'</span></div>'+
+        '<div class="drow"><span class="dlbl">Jenis</span><span class="dval"><span class="chip" style="background:'+cfg.color+'30;color:'+cfg.color+';">'+jenis+'</span></span></div>'+
         '<div class="drow"><span class="dlbl">Kota</span><span class="dval">Manado</span></div>'
     );
 }
 
 function openKec(nm,kd){
     var info=infoByKec[nm]||{};
-    openPanel('🗺️','KECAMATAN',nm,'Kota Manado',
+    openPanel('🗺️','KETERANGAN',nm,'Kota Manado',
         'linear-gradient(135deg,#0d0118,#5a1535)',
-        '<div class="sec-title">Statistik Wilayah</div>'+
         '<div class="stat-grid">'+
             '<div class="stat-card"><div class="stat-val">'+(info.jumlah_umkm||0)+'</div><div class="stat-lbl">Jumlah UMKM</div></div>'+
             '<div class="stat-card"><div class="stat-val">'+(info.nm_kelurah_count||0)+'</div><div class="stat-lbl">Kelurahan</div></div>'+
         '</div>'+
-        '<div class="sec-title">Informasi</div>'+
+        '<div class="sec-title">Informasi Wilayah</div>'+
         '<div class="drow"><span class="dlbl">Kecamatan</span><span class="dval">'+nm+'</span></div>'+
         '<div class="drow"><span class="dlbl">Kode</span><span class="dval">'+(kd||'-')+'</span></div>'+
         '<div class="drow"><span class="dlbl">Kota</span><span class="dval">Manado</span></div>'
@@ -280,15 +356,14 @@ function openKec(nm,kd){
 function openPotensi(props){
     var name=props.name||props.amenity||props.office||'Fasilitas Ekonomi';
     var info=potensikategori(props);
-    openPanel('⭐','POTENSI PENGEMBANGAN',name,'Kota Manado, Sulawesi Utara',
+    openPanel('⭐','KETERANGAN',name,'Potensi Pengembangan UMKM',
         'linear-gradient(135deg,#1a0800,#7a3800)',
         '<div class="potensi-box"><strong>💡 Mengapa ini potensi?</strong>'+info.alasan+'</div>'+
-        '<div class="sec-title">Detail Lokasi</div>'+
+        '<div class="sec-title">Detail</div>'+
         '<div class="drow"><span class="dlbl">Kategori</span><span class="dval">'+info.kat+'</span></div>'+
         '<div class="drow"><span class="dlbl">Nama</span><span class="dval">'+name+'</span></div>'+
         (props.opening_ho?'<div class="drow"><span class="dlbl">Jam Buka</span><span class="dval">'+props.opening_ho+'</span></div>':'')+
         (props.addr_stree?'<div class="drow"><span class="dlbl">Jalan</span><span class="dval">'+props.addr_stree+'</span></div>':'')+
-        '<div class="sec-title">Rekomendasi UMKM</div>'+
         '<div class="drow"><span class="dlbl">Cocok untuk</span><span class="dval">'+info.cocok+'</span></div>'
     );
 }
@@ -296,18 +371,33 @@ function openPotensi(props){
 document.getElementById('panel-close').onclick=function(){
     panel.classList.remove('open');
     selectedKec=null;
+    hoveredKec=null;
     lyr_Kecamatan_3.setStyle(kecStyle);
 };
 
-// === CLICK ===
+// ===== HOVER =====
+map.on('pointermove',function(evt){
+    var found=null;
+    map.forEachFeatureAtPixel(evt.pixel,function(f,l){
+        if(!found && l===lyr_Kecamatan_3) found=f;
+    },{hitTolerance:4});
+    if(found !== hoveredKec){
+        hoveredKec=found;
+        lyr_Kecamatan_3.setStyle(kecStyle);
+    }
+    var hasCursor=map.hasFeatureAtPixel(evt.pixel,{
+        layerFilter:function(l){return l===lyr_Titik_4||l===lyr_Kecamatan_3||l===lyr_Fasilitas_Ekonomi_6;},
+        hitTolerance:10
+    });
+    map.getViewport().style.cursor=hasCursor?'pointer':'';
+});
+
+// ===== CLICK =====
 map.on('singleclick',function(evt){
     var done=false;
     map.forEachFeatureAtPixel(evt.pixel,function(f,l){
         if(done) return;
-        if(l===lyr_Titik_4){
-            done=true;
-            openUmkm(f.get('name')||'Tanpa Nama',f.get('jenisusaha')||'Kios');
-        }
+        if(l===lyr_Titik_4){done=true;openUmkm(f.get('name')||'Tanpa Nama',f.get('jenisusaha')||'Kios');}
     },{hitTolerance:10});
     if(!done) map.forEachFeatureAtPixel(evt.pixel,function(f,l){
         if(done) return;
@@ -331,14 +421,6 @@ map.on('singleclick',function(evt){
         selectedKec=null;
         lyr_Kecamatan_3.setStyle(kecStyle);
     }
-});
-
-map.on('pointermove',function(evt){
-    var has=map.hasFeatureAtPixel(evt.pixel,{
-        layerFilter:function(l){return l===lyr_Titik_4||l===lyr_Kecamatan_3||l===lyr_Fasilitas_Ekonomi_6;},
-        hitTolerance:10
-    });
-    map.getViewport().style.cursor=has?'pointer':'';
 });
 </script>
 </body>
