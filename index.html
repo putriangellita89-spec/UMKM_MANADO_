@@ -257,6 +257,16 @@ function kecStyle(feature) {
 lyr_Kecamatan_3.setStyle(kecStyle);
 lyr_Kecamatan_3.set('interactive', true);
 
+// ===== IMAGE MAP per UMKM =====
+var umkmImages = {
+    'Kios Asna Paniki Dua':    ['images/Kios%20Asna%20Paniki%20Dua.png'],
+    'Kios Berkat Kairagi Satu':['images/Kios%20Berkat.png','images/Kios%20Berkat%202.png'],
+    'Kios Clay':               ['images/Kios%20Clay.png'],
+    'Kios Jeane':              ['images/Kios%20Jeane.png'],
+    'Kios Jelita Jaya':        ['images/Kios%20Jelita%20Jaya.png'],
+    'Kios Nancy':              ['images/Kios%20Nancy.png']
+};
+
 // ===== PIN STYLE for Titik =====
 var umkmCfg = {
     'Kios':    {color:'#b648b0',dark:'#7a1f76',emoji:'🏪'},
