@@ -28,10 +28,13 @@
 
         /* PANEL */
         #detail-panel{
-            position:fixed;top:58px;right:0;width:320px;height:calc(100vh - 58px);
+            position:fixed;top:80px;right:16px;width:320px;
+            max-height:calc(100vh - 110px);
             background:#1a1a2e;z-index:900;
-            box-shadow:-6px 0 32px rgba(0,0,0,0.4);
-            transform:translateX(105%);transition:transform 0.35s cubic-bezier(.4,0,.2,1);
+            border-radius:16px;
+            box-shadow:0 8px 40px rgba(0,0,0,0.5);
+            transform:translateX(calc(100% + 24px));
+            transition:transform 0.35s cubic-bezier(.4,0,.2,1);
             display:flex;flex-direction:column;overflow:hidden;
         }
         #detail-panel.open{transform:translateX(0);}
@@ -196,18 +199,25 @@
 
 <script>
 // ===== MAKE ALL POLYGON LAYERS TRANSPARENT (only border) =====
-// KotaManado - only border, no fill
+// KotaManado - transparent fill, show KOTA MANADO label big
 lyr_KotaManado_1.setStyle(function(feature) {
     return [new ol.style.Style({
-        stroke: new ol.style.Stroke({color:'rgba(60,10,60,0.5)', width:1.5}),
-        fill: new ol.style.Fill({color:'rgba(0,0,0,0)'})
+        stroke: new ol.style.Stroke({color:'rgba(60,10,60,0.6)', width:2}),
+        fill: new ol.style.Fill({color:'rgba(0,0,0,0)'}),
+        text: new ol.style.Text({
+            text: 'KOTA MANADO',
+            font: "bold 22px 'Segoe UI', sans-serif",
+            fill: new ol.style.Fill({color:'rgba(60,10,60,0.5)'}),
+            stroke: new ol.style.Stroke({color:'rgba(255,255,255,0.7)', width:3}),
+            overflow: true
+        })
     })];
 });
 
-// Kelurahan - only border, no fill
+// Kelurahan - only dashed border, NO label (smaller than kecamatan)
 lyr_Kelurahan_2.setStyle(function(feature) {
     return [new ol.style.Style({
-        stroke: new ol.style.Stroke({color:'rgba(80,20,80,0.35)', width:0.7, lineDash:[4,4]}),
+        stroke: new ol.style.Stroke({color:'rgba(80,20,80,0.3)', width:0.6, lineDash:[3,5]}),
         fill: new ol.style.Fill({color:'rgba(0,0,0,0)'})
     })];
 });
@@ -238,19 +248,26 @@ function kecStyle(feature) {
     var baseColor = kecColors[nm] || 'rgba(180,80,120,';
     var isSel = feature === selectedKec;
     var isHov = feature === hoveredKec && !isSel;
-    var fillColor = isSel ? baseColor+'0.72)' : isHov ? baseColor+'0.45)' : 'rgba(0,0,0,0)';
+    var fillColor = isSel ? baseColor+'0.85)' : isHov ? baseColor+'0.4)' : 'rgba(0,0,0,0)';
     var strokeW = isSel ? 2.5 : isHov ? 1.8 : 1;
     var strokeC = isSel ? 'rgba(255,255,255,0.9)' : isHov ? 'rgba(255,255,255,0.6)' : 'rgba(80,20,60,0.5)';
-    return [new ol.style.Style({
+    var styles = [new ol.style.Style({
         stroke: new ol.style.Stroke({color:strokeC, width:strokeW}),
-        fill: new ol.style.Fill({color:fillColor}),
-        text: new ol.style.Text({
-            text: nm,
-            font: "bold 13px 'Segoe UI',sans-serif",
-            fill: new ol.style.Fill({color: (isSel||isHov) ? '#fff' : '#2d0a1e'}),
-            stroke: new ol.style.Stroke({color:(isSel||isHov)?'rgba(0,0,0,0.5)':'rgba(255,255,255,0.85)',width:3})
-        })
+        fill: new ol.style.Fill({color:fillColor})
     })];
+    // Only show label on hover or selected
+    if (isSel || isHov) {
+        styles.push(new ol.style.Style({
+            text: new ol.style.Text({
+                text: nm,
+                font: "bold 14px 'Segoe UI',sans-serif",
+                fill: new ol.style.Fill({color:'#fff'}),
+                stroke: new ol.style.Stroke({color:'rgba(0,0,0,0.6)',width:3}),
+                overflow: true
+            })
+        }));
+    }
+    return styles;
 }
 lyr_Kecamatan_3.setStyle(kecStyle);
 lyr_Kecamatan_3.set('interactive', true);
