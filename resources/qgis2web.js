@@ -352,41 +352,6 @@ function updatePopup() {
     }
 } 
 
-// Custom styled popup for Titik layer (Kios/Warung/Bengkel)
-var umkmIcons = {
-    'Kios': {
-        emoji: '🏪',
-        color: '#b648b0',
-        bg: 'linear-gradient(135deg, #b648b0, #8e2e8a)',
-        label: 'Kios'
-    },
-    'Warung': {
-        emoji: '🍽️',
-        color: '#001cff',
-        bg: 'linear-gradient(135deg, #001cff, #0015cc)',
-        label: 'Warung'
-    },
-    'Bengkel': {
-        emoji: '🔧',
-        color: '#487bb6',
-        bg: 'linear-gradient(135deg, #487bb6, #32578a)',
-        label: 'Bengkel'
-    }
-};
-
-function createUmkmPopup(name, jenis) {
-    var info = umkmIcons[jenis] || { emoji: '📍', color: '#555', bg: 'linear-gradient(135deg,#555,#333)', label: jenis };
-    return '<div style="font-family:\'Segoe UI\',sans-serif;min-width:200px;border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.18);">' +
-        '<div style="background:' + info.bg + ';padding:18px 16px 14px;text-align:center;">' +
-            '<div style="font-size:42px;line-height:1.1;">' + info.emoji + '</div>' +
-            '<div style="color:#fff;font-weight:700;font-size:12px;letter-spacing:2px;margin-top:6px;opacity:0.85;text-transform:uppercase;">' + info.label + '</div>' +
-        '</div>' +
-        '<div style="background:#fff;padding:14px 16px 12px;text-align:center;">' +
-            '<div style="font-size:15px;font-weight:700;color:#222;line-height:1.3;">' + name + '</div>' +
-        '</div>' +
-    '</div>';
-}
-
 function onSingleClickFeatures(evt) {
     if (doHover || sketch) {
         return;
@@ -411,15 +376,6 @@ function onSingleClickFeatures(evt) {
             }
             currentFeature = feature;
             clusteredFeatures = feature.get("features");
-
-            // Custom popup for Titik_4 (UMKM points)
-            if (layer.get('title') === 'Titik' || layer === lyr_Titik_4) {
-                var name = currentFeature.get('name') || 'Tanpa Nama';
-                var jenis = currentFeature.get('jenisusaha') || '';
-                popupText = createUmkmPopup(name, jenis);
-                return;
-            }
-
             if (typeof clusteredFeatures !== "undefined") {
                 if (doPopup) {
                     for(var n = 0; n < clusteredFeatures.length; n++) {
@@ -444,7 +400,7 @@ function onSingleClickFeatures(evt) {
     });
     if (popupText === '<ul>') {
         popupText = '';
-    } else if (popupText.startsWith('<ul>')) {
+    } else {
         popupText += '</ul>';
     }
 	
