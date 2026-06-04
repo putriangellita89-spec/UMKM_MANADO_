@@ -9,132 +9,121 @@
     <link rel="stylesheet" href="./resources/ol-layerswitcher.css">
     <link rel="stylesheet" href="./resources/qgis2web.css">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body, #map { width: 100%; height: 100%; font-family: 'Segoe UI', Arial, sans-serif; }
+        *{box-sizing:border-box;margin:0;padding:0;}
+        html,body,#map{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;}
 
-        /* TOP HEADER */
-        #app-header {
-            position: fixed; top: 0; left: 0; right: 0; height: 56px;
-            background: linear-gradient(135deg, #1a3a6c, #2563b0);
-            color: #fff; display: flex; align-items: center;
-            padding: 0 20px; z-index: 1000;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+        /* HEADER */
+        #app-header{
+            position:fixed;top:0;left:0;right:0;height:58px;
+            background:linear-gradient(135deg,#1a0a2e,#4a0e2e,#7b1a3a);
+            color:#fff;display:flex;align-items:center;
+            padding:0 20px;z-index:1000;
+            box-shadow:0 2px 16px rgba(0,0,0,0.4);
         }
-        #app-header .logo { font-size: 22px; margin-right: 12px; }
-        #app-header h1 { font-size: 17px; font-weight: 700; letter-spacing: 0.3px; }
-        #app-header p { font-size: 12px; opacity: 0.75; }
-        #app-header .badge {
-            margin-left: auto; background: rgba(255,255,255,0.18);
-            border-radius: 20px; padding: 4px 14px;
-            font-size: 13px; font-weight: 600;
+        #app-header .logo{font-size:26px;margin-right:14px;}
+        #app-header h1{font-size:16px;font-weight:800;letter-spacing:0.4px;}
+        #app-header p{font-size:11px;opacity:0.7;margin-top:2px;}
+        #app-header .badge{
+            margin-left:auto;
+            background:linear-gradient(135deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));
+            border:1px solid rgba(255,255,255,0.2);
+            border-radius:20px;padding:5px 16px;
+            font-size:13px;font-weight:700;backdrop-filter:blur(4px);
         }
 
         /* MAP */
-        #map { padding-top: 56px; }
+        #map{padding-top:58px;}
 
-        /* SIDEBAR PANEL (right) */
-        #detail-panel {
-            position: fixed; top: 56px; right: 0;
-            width: 340px; height: calc(100vh - 56px);
-            background: #fff; z-index: 900;
-            box-shadow: -4px 0 24px rgba(0,0,0,0.13);
-            transform: translateX(100%);
-            transition: transform 0.3s cubic-bezier(.4,0,.2,1);
-            display: flex; flex-direction: column; overflow: hidden;
+        /* DETAIL PANEL */
+        #detail-panel{
+            position:fixed;top:58px;right:0;
+            width:340px;height:calc(100vh - 58px);
+            background:#fff;z-index:900;
+            box-shadow:-6px 0 30px rgba(0,0,0,0.2);
+            transform:translateX(100%);
+            transition:transform 0.35s cubic-bezier(.4,0,.2,1);
+            display:flex;flex-direction:column;overflow:hidden;
         }
-        #detail-panel.open { transform: translateX(0); }
-        #panel-close {
-            position: absolute; top: 12px; right: 14px;
-            background: rgba(255,255,255,0.2); border: none;
-            color: #fff; font-size: 20px; cursor: pointer;
-            border-radius: 50%; width: 32px; height: 32px;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 10; transition: background 0.2s;
+        #detail-panel.open{transform:translateX(0);}
+
+        #panel-header{
+            padding:24px 20px 18px;
+            color:#fff;position:relative;flex-shrink:0;
+            background:linear-gradient(135deg,#1a0a2e,#6b1a4a);
         }
-        #panel-close:hover { background: rgba(255,255,255,0.35); }
-        #panel-header {
-            padding: 22px 20px 16px; color: #fff; position: relative;
-            flex-shrink: 0;
+        #panel-close{
+            position:absolute;top:14px;right:14px;
+            background:rgba(255,255,255,0.15);border:none;
+            color:#fff;font-size:16px;cursor:pointer;
+            border-radius:50%;width:30px;height:30px;
+            display:flex;align-items:center;justify-content:center;
+            transition:background 0.2s;
         }
-        #panel-header .panel-type-badge {
-            font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
-            text-transform: uppercase; opacity: 0.85;
-            background: rgba(255,255,255,0.2); border-radius: 20px;
-            padding: 3px 10px; display: inline-block; margin-bottom: 10px;
+        #panel-close:hover{background:rgba(255,255,255,0.3);}
+        .panel-badge{
+            display:inline-block;font-size:10px;font-weight:700;
+            letter-spacing:1.5px;text-transform:uppercase;
+            background:rgba(255,255,255,0.15);border-radius:20px;
+            padding:3px 12px;margin-bottom:12px;
         }
-        #panel-header .panel-icon { font-size: 36px; display: block; margin-bottom: 6px; }
-        #panel-header h2 { font-size: 20px; font-weight: 700; line-height: 1.25; }
-        #panel-header .panel-sub { font-size: 12px; opacity: 0.8; margin-top: 4px; }
-        #panel-body { flex: 1; overflow-y: auto; padding: 16px 20px 24px; }
-        .stat-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 10px; margin: 12px 0;
+        #panel-icon{font-size:40px;display:block;margin-bottom:8px;}
+        #panel-name{font-size:20px;font-weight:800;line-height:1.25;margin-bottom:4px;}
+        #panel-sub{font-size:12px;opacity:0.75;}
+
+        /* PANEL BODY */
+        #panel-body{flex:1;overflow-y:auto;padding:16px 20px 24px;background:#fafafa;}
+        .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
+        .stat-card{
+            background:#fff;border-radius:14px;padding:16px 12px;
+            text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.07);
         }
-        .stat-card {
-            background: #f4f7fb; border-radius: 12px;
-            padding: 14px 12px; text-align: center;
+        .stat-val{font-size:26px;font-weight:900;color:#4a0e2e;}
+        .stat-lbl{font-size:11px;color:#999;margin-top:3px;}
+        .sec-title{
+            font-size:10px;font-weight:700;letter-spacing:1.2px;
+            color:#bbb;text-transform:uppercase;margin:18px 0 10px;
         }
-        .stat-card .stat-val {
-            font-size: 24px; font-weight: 800; color: #1a3a6c;
+        .detail-row{
+            display:flex;justify-content:space-between;align-items:center;
+            padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:13px;
         }
-        .stat-card .stat-lbl {
-            font-size: 11px; color: #888; margin-top: 3px;
-        }
-        .section-title {
-            font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
-            color: #aaa; text-transform: uppercase;
-            margin: 18px 0 8px;
-        }
-        .detail-row {
-            display: flex; justify-content: space-between;
-            align-items: center; padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 13px;
-        }
-        .detail-row:last-child { border-bottom: none; }
-        .detail-row .lbl { color: #888; }
-        .detail-row .val { font-weight: 600; color: #222; }
-        .type-chip {
-            display: inline-block; padding: 5px 14px;
-            border-radius: 20px; font-size: 12px; font-weight: 600;
-            margin: 4px 4px 0 0;
+        .detail-row:last-child{border-bottom:none;}
+        .detail-lbl{color:#999;}
+        .detail-val{font-weight:700;color:#222;text-align:right;max-width:60%;}
+        .chip{
+            display:inline-block;padding:4px 14px;border-radius:20px;
+            font-size:12px;font-weight:700;margin-top:2px;
         }
 
-        /* LEGEND (left bottom) */
-        #legend-box {
-            position: fixed; left: 12px; bottom: 12px;
-            background: #fff; border-radius: 14px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            padding: 14px 18px; z-index: 800;
-            min-width: 160px;
+        /* LEGEND */
+        #legend-box{
+            position:fixed;left:14px;bottom:14px;
+            background:linear-gradient(135deg,#1a0a2e,#2d0a1e);
+            color:#fff;border-radius:16px;
+            box-shadow:0 6px 24px rgba(0,0,0,0.35);
+            padding:16px 20px;z-index:800;min-width:160px;
         }
-        #legend-box h3 {
-            font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
-            color: #aaa; text-transform: uppercase; margin-bottom: 10px;
+        #legend-box h3{
+            font-size:9px;font-weight:700;letter-spacing:1.5px;
+            color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:12px;
         }
-        .legend-item {
-            display: flex; align-items: center;
-            gap: 10px; margin-bottom: 8px; font-size: 13px;
-        }
-        .legend-dot {
-            width: 22px; height: 22px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 12px; flex-shrink: 0;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-        }
+        .legend-item{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:13px;color:#fff;}
+        .legend-item:last-child{margin-bottom:0;}
+        .legend-pin{width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
 
         /* HINT */
-        #hint {
-            position: fixed; right: 16px; bottom: 16px;
-            background: rgba(26,58,108,0.88); color: #fff;
-            border-radius: 24px; padding: 8px 18px;
-            font-size: 13px; z-index: 800;
-            pointer-events: none; backdrop-filter: blur(4px);
+        #hint{
+            position:fixed;right:16px;bottom:16px;
+            background:linear-gradient(135deg,rgba(26,10,46,0.9),rgba(74,14,46,0.9));
+            color:#fff;border-radius:24px;padding:9px 18px;
+            font-size:12px;z-index:800;pointer-events:none;
+            backdrop-filter:blur(6px);box-shadow:0 4px 16px rgba(0,0,0,0.3);
         }
 
-        /* OL popup hide */
-        .ol-popup { display: none !important; }
-        .ol-zoom { top: 72px !important; }
+        /* OL tweaks */
+        .ol-popup{display:none!important;}
+        .ol-zoom{top:70px!important;}
+        .ol-attribution{bottom:4px!important;}
     </style>
 </head>
 <body>
@@ -144,7 +133,7 @@
             <h1>Peta UMKM Kota Manado</h1>
             <p>Sulawesi Utara, Indonesia</p>
         </div>
-        <div class="badge" id="total-badge">59 UMKM</div>
+        <div class="badge">59 UMKM</div>
     </div>
 
     <div id="map">
@@ -154,38 +143,54 @@
         </div>
     </div>
 
-    <!-- DETAIL PANEL -->
     <div id="detail-panel">
         <div id="panel-header">
             <button id="panel-close">✕</button>
-            <span class="panel-icon" id="panel-icon">🏪</span>
-            <div class="panel-type-badge" id="panel-type">KIOS</div>
-            <h2 id="panel-name">Nama</h2>
-            <div class="panel-sub" id="panel-sub"></div>
+            <span id="panel-icon">🏪</span>
+            <div class="panel-badge" id="panel-type">KIOS</div>
+            <div id="panel-name">Nama</div>
+            <div id="panel-sub">Kota Manado</div>
         </div>
         <div id="panel-body"></div>
     </div>
 
-    <!-- LEGEND -->
     <div id="legend-box">
         <h3>Jenis UMKM</h3>
         <div class="legend-item">
-            <div class="legend-dot" style="background:#b648b0;">🏪</div>
+            <div class="legend-pin">
+                <svg width="22" height="28" viewBox="0 0 22 28">
+                    <ellipse cx="11" cy="26" rx="5" ry="2" fill="rgba(0,0,0,0.2)"/>
+                    <path d="M11 0 C5 0 0 5 0 11 C0 18 11 28 11 28 C11 28 22 18 22 11 C22 5 17 0 11 0Z" fill="#b648b0"/>
+                    <text x="11" y="14" text-anchor="middle" dominant-baseline="middle" font-size="11">🏪</text>
+                </svg>
+            </div>
             <span>Kios</span>
         </div>
         <div class="legend-item">
-            <div class="legend-dot" style="background:#2255e0;">🍽️</div>
+            <div class="legend-pin">
+                <svg width="22" height="28" viewBox="0 0 22 28">
+                    <ellipse cx="11" cy="26" rx="5" ry="2" fill="rgba(0,0,0,0.2)"/>
+                    <path d="M11 0 C5 0 0 5 0 11 C0 18 11 28 11 28 C11 28 22 18 22 11 C22 5 17 0 11 0Z" fill="#2255e0"/>
+                    <text x="11" y="14" text-anchor="middle" dominant-baseline="middle" font-size="11">🍽️</text>
+                </svg>
+            </div>
             <span>Warung</span>
         </div>
         <div class="legend-item">
-            <div class="legend-dot" style="background:#3a7bd5;">🔧</div>
+            <div class="legend-pin">
+                <svg width="22" height="28" viewBox="0 0 22 28">
+                    <ellipse cx="11" cy="26" rx="5" ry="2" fill="rgba(0,0,0,0.2)"/>
+                    <path d="M11 0 C5 0 0 5 0 11 C0 18 11 28 11 28 C11 28 22 18 22 11 C22 5 17 0 11 0Z" fill="#3a7bd5"/>
+                    <text x="11" y="14" text-anchor="middle" dominant-baseline="middle" font-size="11">🔧</text>
+                </svg>
+            </div>
             <span>Bengkel</span>
         </div>
     </div>
 
     <div id="hint">👆 Klik titik atau wilayah untuk lihat detail</div>
 
-    <!-- SCRIPTS -->
+    <!-- ALL ORIGINAL SCRIPTS -->
     <script src="resources/qgis2web_expressions.js"></script>
     <script src="./resources/functions.js"></script>
     <script src="./resources/ol.js"></script>
@@ -208,200 +213,229 @@
     <script src="./resources/Autolinker.min.js"></script>
 
     <script>
-    // ===== CUSTOM TITIK STYLE WITH EMOJI PINS =====
-    var umkmConfig = {
-        'Kios':    { emoji: '🏪', color: '#b648b0', shadow: '#7a1f76' },
-        'Warung':  { emoji: '🍽️', color: '#2255e0', shadow: '#0d2eb5' },
-        'Bengkel': { emoji: '🔧', color: '#3a7bd5', shadow: '#1a4a8a' }
+    // ===== PIN MARKER STYLE (SVG map pin) =====
+    var umkmCfg = {
+        'Kios':    {color:'#b648b0', dark:'#7a1f76', emoji:'🏪'},
+        'Warung':  {color:'#2255e0', dark:'#0d2eb5', emoji:'🍽️'},
+        'Bengkel': {color:'#3a7bd5', dark:'#1a4a8a', emoji:'🔧'}
     };
 
     var pinCache = {};
-    function makePinCanvas(jenis) {
+    function makeSVGPin(jenis) {
         if (pinCache[jenis]) return pinCache[jenis];
-        var cfg = umkmConfig[jenis] || { emoji: '📍', color: '#555', shadow: '#333' };
-        var canvas = document.createElement('canvas');
-        var w = 40, h = 48;
-        canvas.width = w; canvas.height = h;
-        var ctx = canvas.getContext('2d');
-        // shadow
-        ctx.beginPath();
-        ctx.ellipse(w/2, h-4, 7, 3, 0, 0, Math.PI*2);
-        ctx.fillStyle = 'rgba(0,0,0,0.2)';
-        ctx.fill();
-        // circle
-        ctx.beginPath();
-        ctx.arc(w/2, w/2, w/2-2, 0, Math.PI*2);
-        ctx.fillStyle = cfg.color;
-        ctx.shadowColor = cfg.shadow;
-        ctx.shadowBlur = 8;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-        // inner glow
-        ctx.beginPath();
-        ctx.arc(w/2, w/2-3, w/2-10, 0, Math.PI*2);
-        ctx.fillStyle = 'rgba(255,255,255,0.2)';
-        ctx.fill();
-        // emoji
-        ctx.font = '18px serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(cfg.emoji, w/2, w/2+1);
-        pinCache[jenis] = canvas;
-        return canvas;
+        var cfg = umkmCfg[jenis] || {color:'#555',dark:'#333',emoji:'📍'};
+        var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="46" viewBox="0 0 36 46">' +
+            '<defs>' +
+                '<radialGradient id="g'+jenis+'" cx="40%" cy="35%">' +
+                    '<stop offset="0%" stop-color="'+cfg.color+'"/>' +
+                    '<stop offset="100%" stop-color="'+cfg.dark+'"/>' +
+                '</radialGradient>' +
+            '</defs>' +
+            '<ellipse cx="18" cy="44" rx="7" ry="2.5" fill="rgba(0,0,0,0.25)"/>' +
+            '<path d="M18 1 C8 1 1 8 1 17 C1 28 18 45 18 45 C18 45 35 28 35 17 C35 8 28 1 18 1Z" fill="url(#g'+jenis+')" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>' +
+            '<circle cx="18" cy="17" r="9" fill="rgba(255,255,255,0.2)"/>' +
+            '<text x="18" y="21" text-anchor="middle" font-size="14" font-family="serif">'+cfg.emoji+'</text>' +
+        '</svg>';
+        var blob = new Blob([svg], {type:'image/svg+xml'});
+        var url = URL.createObjectURL(blob);
+        var icon = new ol.style.Style({
+            image: new ol.style.Icon({
+                src: url, anchor:[0.5,1],
+                anchorXUnits:'fraction', anchorYUnits:'fraction',
+                scale: 1
+            })
+        });
+        pinCache[jenis] = icon;
+        return icon;
     }
 
-    var style_Titik_4 = function(feature, resolution) {
+    var style_Titik_4 = function(feature, resolution){
         var jenis = feature.get('jenisusaha') || 'Kios';
-        var canvas = makePinCanvas(jenis);
-        return [new ol.style.Style({
-            image: new ol.style.Icon({
-                img: canvas,
-                imgSize: [40, 48],
-                anchor: [0.5, 1],
-                anchorXUnits: 'fraction',
-                anchorYUnits: 'fraction',
-                scale: resolution < 5 ? 1.2 : 1
-            })
-        })];
+        return [makeSVGPin(jenis)];
     };
 
-    // ===== LAYERS =====
+    // ===== KECAMATAN: transparan sebelum diklik =====
+    var selectedKecFeature = null;
+    var style_Kecamatan_3_orig = style_Kecamatan_3; // from loaded script
+
+    // ===== BUILD LAYERS =====
     var lyr_OpenStreetMap_0 = new ol.layer.Tile({
         source: new ol.source.XYZ({
-            attributions: ' ',
-            url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+            attributions:' ',
+            url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
         })
     });
 
-    var format_KotaManado_1 = new ol.format.GeoJSON();
-    var features_KotaManado_1 = format_KotaManado_1.readFeatures(json_KotaManado_1, {dataProjection:'EPSG:4326',featureProjection:'EPSG:3857'});
-    var src_KotaManado_1 = new ol.source.Vector({attributions:' '});
-    src_KotaManado_1.addFeatures(features_KotaManado_1);
-    var lyr_KotaManado_1 = new ol.layer.Vector({source:src_KotaManado_1, style:style_KotaManado_1, interactive:false});
+    function makeVectorLayer(json, style, opts) {
+        var fmt = new ol.format.GeoJSON();
+        var feats = fmt.readFeatures(json, {dataProjection:'EPSG:4326',featureProjection:'EPSG:3857'});
+        var src = new ol.source.Vector({attributions:' '});
+        src.addFeatures(feats);
+        var cfg = Object.assign({source:src, style:style, declutter:false}, opts||{});
+        return {layer: new ol.layer.Vector(cfg), features: feats};
+    }
 
-    var format_Kelurahan_2 = new ol.format.GeoJSON();
-    var features_Kelurahan_2 = format_Kelurahan_2.readFeatures(json_Kelurahan_2, {dataProjection:'EPSG:4326',featureProjection:'EPSG:3857'});
-    var src_Kelurahan_2 = new ol.source.Vector({attributions:' '});
-    src_Kelurahan_2.addFeatures(features_Kelurahan_2);
-    var lyr_Kelurahan_2 = new ol.layer.Vector({source:src_Kelurahan_2, style:style_Kelurahan_2, interactive:false});
+    var kota = makeVectorLayer(json_KotaManado_1, style_KotaManado_1, {interactive:false, opacity:0.3});
+    var lyr_KotaManado_1 = kota.layer;
 
-    var format_Kecamatan_3 = new ol.format.GeoJSON();
-    var features_Kecamatan_3 = format_Kecamatan_3.readFeatures(json_Kecamatan_3, {dataProjection:'EPSG:4326',featureProjection:'EPSG:3857'});
-    var src_Kecamatan_3 = new ol.source.Vector({attributions:' '});
-    src_Kecamatan_3.addFeatures(features_Kecamatan_3);
-    var lyr_Kecamatan_3 = new ol.layer.Vector({source:src_Kecamatan_3, style:style_Kecamatan_3, interactive:true});
+    var kel = makeVectorLayer(json_Kelurahan_2, style_Kelurahan_2, {interactive:false});
+    var lyr_Kelurahan_2 = kel.layer;
 
-    var format_Titik_4 = new ol.format.GeoJSON();
-    var features_Titik_4 = format_Titik_4.readFeatures(json_Titik_4, {dataProjection:'EPSG:4326',featureProjection:'EPSG:3857'});
-    var src_Titik_4 = new ol.source.Vector({attributions:' '});
-    src_Titik_4.addFeatures(features_Titik_4);
-    var lyr_Titik_4 = new ol.layer.Vector({source:src_Titik_4, style:style_Titik_4, interactive:true, declutter:false});
+    // Kecamatan: transparan (hanya border), bisa diklik
+    var kecStyle = function(feature, resolution) {
+        var isSelected = feature === selectedKecFeature;
+        return [new ol.style.Style({
+            stroke: new ol.style.Stroke({color: isSelected ? 'rgba(255,255,255,0.9)' : 'rgba(80,20,80,0.6)', width: isSelected ? 2 : 1}),
+            fill: new ol.style.Fill({color: isSelected ? 'rgba(180,80,100,0.25)' : 'rgba(0,0,0,0)'}),
+            text: new ol.style.Text({
+                text: feature.get('nm_kecamat') || '',
+                font: "bold 13px 'Segoe UI', sans-serif",
+                fill: new ol.style.Fill({color:'#2d0a1e'}),
+                stroke: new ol.style.Stroke({color:'rgba(255,255,255,0.8)', width:3})
+            })
+        })];
+    };
+    var kec = makeVectorLayer(json_Kecamatan_3, kecStyle, {interactive:true});
+    var lyr_Kecamatan_3 = kec.layer;
 
-    var format_Info_8 = new ol.format.GeoJSON();
-    var features_Info_8 = format_Info_8.readFeatures(json_Info_8, {dataProjection:'EPSG:4326',featureProjection:'EPSG:3857'});
-    var src_Info_8 = new ol.source.Vector({attributions:' '});
-    src_Info_8.addFeatures(features_Info_8);
-    var lyr_Info_8 = new ol.layer.Vector({source:src_Info_8, style:style_Info_8, interactive:true, opacity:0});
+    var titik = makeVectorLayer(json_Titik_4, style_Titik_4, {interactive:true, declutter:false});
+    var lyr_Titik_4 = titik.layer;
 
+    var ban = makeVectorLayer(json_Bangunan_5, style_Bangunan_5, {interactive:false});
+    var lyr_Bangunan_5 = ban.layer;
+
+    var fas = makeVectorLayer(json_Fasilitas_Ekonomi_6, style_Fasilitas_Ekonomi_6, {interactive:false});
+    var lyr_Fasilitas_Ekonomi_6 = fas.layer;
+
+    var jal = makeVectorLayer(json_Jalan_Utama_7, style_Jalan_Utama_7, {interactive:false});
+    var lyr_Jalan_Utama_7 = jal.layer;
+
+    var inf = makeVectorLayer(json_Info_8, style_Info_8, {interactive:false, opacity:0});
+    var lyr_Info_8 = inf.layer;
+
+    // Info data lookup
+    var infoByKec = {};
+    inf.features.forEach(function(f){
+        var nm = f.get('nm_kecamat');
+        if(nm) infoByKec[nm] = {
+            jumlah_umkm: f.get('jumlah_umkm')||0,
+            nm_kelurah_count: f.get('nm_kelurah_count')||0
+        };
+    });
+
+    // ===== MAP =====
     var map = new ol.Map({
         target: 'map',
         renderer: 'canvas',
-        layers: [lyr_OpenStreetMap_0, lyr_KotaManado_1, lyr_Kelurahan_2, lyr_Kecamatan_3, lyr_Titik_4, lyr_Info_8],
-        view: new ol.View({ maxZoom:28, minZoom:1 })
+        layers: [
+            lyr_OpenStreetMap_0,
+            lyr_KotaManado_1,
+            lyr_Kelurahan_2,
+            lyr_Bangunan_5,
+            lyr_Jalan_Utama_7,
+            lyr_Fasilitas_Ekonomi_6,
+            lyr_Kecamatan_3,
+            lyr_Titik_4,
+            lyr_Info_8
+        ],
+        view: new ol.View({maxZoom:28, minZoom:1})
     });
     map.getView().fit([13891823.533604,161148.160461,13913777.205052,174477.489826], map.getSize());
     map.getView().setProperties({constrainResolution:true});
 
-    // ===== INFO DATA (jumlah UMKM per kecamatan) =====
-    var infoByKec = {};
-    features_Info_8.forEach(function(f) {
-        var nm = f.get('nm_kecamat');
-        if (nm) infoByKec[nm] = {
-            jumlah_umkm: f.get('jumlah_umkm') || 0,
-            nm_kelurah_count: f.get('nm_kelurah_count') || 0
-        };
-    });
-
     // ===== PANEL =====
     var panel = document.getElementById('detail-panel');
-    var panelIcon = document.getElementById('panel-icon');
-    var panelType = document.getElementById('panel-type');
-    var panelName = document.getElementById('panel-name');
-    var panelSub  = document.getElementById('panel-sub');
-    var panelBody = document.getElementById('panel-body');
-
-    var kecColors = {
-        'Bunaken':'#92df40','Bunaken Kepulauan':'#ab77e5','Malalayang':'#53cdc9',
-        'Mapanget':'#ed6b6f','Paal Dua':'#3c91db','Sario':'#373dec',
-        'Singkil':'#d27723','Tikala':'#e48bba','Tuminiting':'#72d7a3',
-        'Wanea':'#3ae937','Wenang':'#e1df5b'
-    };
+    var elIcon = document.getElementById('panel-icon');
+    var elType = document.getElementById('panel-type');
+    var elName = document.getElementById('panel-name');
+    var elSub  = document.getElementById('panel-sub');
+    var elBody = document.getElementById('panel-body');
+    var elHdr  = document.getElementById('panel-header');
 
     function openUmkmPanel(name, jenis) {
-        var cfg = umkmConfig[jenis] || {emoji:'📍', color:'#555'};
-        panel.style.background = '#fff';
-        panelIcon.textContent = cfg.emoji;
-        panelType.textContent = jenis.toUpperCase();
-        panelName.textContent = name;
-        panelSub.textContent = 'Kota Manado, Sulawesi Utara';
-        document.getElementById('panel-header').style.background =
-            'linear-gradient(135deg,' + cfg.color + ',' + (umkmConfig[jenis]||{shadow:cfg.color}).shadow + ')';
-        panelBody.innerHTML =
-            '<div class="section-title">Informasi Usaha</div>' +
-            '<div class="detail-row"><span class="lbl">Nama Usaha</span><span class="val">' + name + '</span></div>' +
-            '<div class="detail-row"><span class="lbl">Jenis Usaha</span><span class="val">' +
-                '<span class="type-chip" style="background:' + cfg.color + '20;color:' + cfg.color + ';">' + jenis + '</span>' +
-            '</span></div>' +
-            '<div class="detail-row"><span class="lbl">Lokasi</span><span class="val">Kota Manado</span></div>';
+        var cfg = umkmCfg[jenis] || {color:'#555',dark:'#333',emoji:'📍'};
+        elHdr.style.background = 'linear-gradient(135deg,'+cfg.dark+','+cfg.color+')';
+        elIcon.textContent = cfg.emoji;
+        elType.textContent = jenis.toUpperCase();
+        elName.textContent = name;
+        elSub.textContent  = 'Kota Manado, Sulawesi Utara';
+        elBody.innerHTML =
+            '<div class="sec-title">Informasi Usaha</div>' +
+            '<div class="detail-row"><span class="detail-lbl">Nama Usaha</span>' +
+                '<span class="detail-val">'+name+'</span></div>' +
+            '<div class="detail-row"><span class="detail-lbl">Jenis Usaha</span>' +
+                '<span class="detail-val">' +
+                    '<span class="chip" style="background:'+cfg.color+'22;color:'+cfg.color+';">'+jenis+'</span>' +
+                '</span></div>' +
+            '<div class="detail-row"><span class="detail-lbl">Kota</span>' +
+                '<span class="detail-val">Manado</span></div>';
         panel.classList.add('open');
     }
 
     function openKecPanel(nm, kd) {
         var info = infoByKec[nm] || {};
-        var color = kecColors[nm] || '#1a6fc4';
-        panelIcon.textContent = '🗺️';
-        panelType.textContent = 'KECAMATAN';
-        panelName.textContent = nm;
-        panelSub.textContent = 'Kota Manado';
-        document.getElementById('panel-header').style.background =
-            'linear-gradient(135deg,' + color + 'cc, ' + color + ')';
-        panelBody.innerHTML =
-            '<div class="section-title">Statistik Wilayah</div>' +
+        elHdr.style.background = 'linear-gradient(135deg,#1a0a2e,#6b1a4a)';
+        elIcon.textContent = '🗺️';
+        elType.textContent = 'KECAMATAN';
+        elName.textContent = nm;
+        elSub.textContent  = 'Kota Manado';
+        elBody.innerHTML =
+            '<div class="sec-title">Statistik Wilayah</div>' +
             '<div class="stat-grid">' +
-                '<div class="stat-card"><div class="stat-val">' + (info.jumlah_umkm||0) + '</div><div class="stat-lbl">Jumlah UMKM</div></div>' +
-                '<div class="stat-card"><div class="stat-val">' + (info.nm_kelurah_count||0) + '</div><div class="stat-lbl">Kelurahan</div></div>' +
+                '<div class="stat-card"><div class="stat-val">'+(info.jumlah_umkm||0)+'</div><div class="stat-lbl">Jumlah UMKM</div></div>' +
+                '<div class="stat-card"><div class="stat-val">'+(info.nm_kelurah_count||0)+'</div><div class="stat-lbl">Kelurahan</div></div>' +
             '</div>' +
-            '<div class="section-title">Informasi</div>' +
-            '<div class="detail-row"><span class="lbl">Nama Kecamatan</span><span class="val">' + nm + '</span></div>' +
-            '<div class="detail-row"><span class="lbl">Kode</span><span class="val">' + (kd||'-') + '</span></div>' +
-            '<div class="detail-row"><span class="lbl">Kota</span><span class="val">Manado</span></div>';
+            '<div class="sec-title">Informasi</div>' +
+            '<div class="detail-row"><span class="detail-lbl">Nama Kecamatan</span><span class="detail-val">'+nm+'</span></div>' +
+            '<div class="detail-row"><span class="detail-lbl">Kode</span><span class="detail-val">'+(kd||'-')+'</span></div>' +
+            '<div class="detail-row"><span class="detail-lbl">Kota</span><span class="detail-val">Manado</span></div>';
         panel.classList.add('open');
     }
 
-    document.getElementById('panel-close').onclick = function() {
+    document.getElementById('panel-close').onclick = function(){
         panel.classList.remove('open');
+        selectedKecFeature = null;
+        lyr_Kecamatan_3.setStyle(kecStyle);
     };
 
     // ===== CLICK HANDLER =====
-    map.on('singleclick', function(evt) {
-        var hit = false;
-        map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
-            if (hit) return;
+    map.on('singleclick', function(evt){
+        var hitTitik = false;
+        var hitKec = false;
+
+        // Priority: Titik first, then Kecamatan
+        map.forEachFeatureAtPixel(evt.pixel, function(feature, layer){
+            if (hitTitik) return;
             if (layer === lyr_Titik_4) {
-                hit = true;
+                hitTitik = true;
                 openUmkmPanel(feature.get('name')||'Tanpa Nama', feature.get('jenisusaha')||'Kios');
-            } else if (layer === lyr_Kecamatan_3 || layer === lyr_Info_8) {
-                hit = true;
-                openKecPanel(feature.get('nm_kecamat')||'', feature.get('kd_kecamat')||'');
             }
-        }, { hitTolerance: 6 });
-        if (!hit) panel.classList.remove('open');
+        }, {hitTolerance: 8});
+
+        if (!hitTitik) {
+            map.forEachFeatureAtPixel(evt.pixel, function(feature, layer){
+                if (hitKec) return;
+                if (layer === lyr_Kecamatan_3) {
+                    hitKec = true;
+                    selectedKecFeature = feature;
+                    lyr_Kecamatan_3.setStyle(kecStyle);
+                    openKecPanel(feature.get('nm_kecamat')||'', feature.get('kd_kecamat')||'');
+                }
+            }, {hitTolerance: 4});
+        }
+
+        if (!hitTitik && !hitKec) {
+            panel.classList.remove('open');
+            selectedKecFeature = null;
+            lyr_Kecamatan_3.setStyle(kecStyle);
+        }
     });
 
-    // cursor
-    map.on('pointermove', function(evt) {
+    // Cursor
+    map.on('pointermove', function(evt){
         var has = map.hasFeatureAtPixel(evt.pixel, {
-            layerFilter: function(l) { return l===lyr_Titik_4||l===lyr_Kecamatan_3; }
+            layerFilter: function(l){ return l===lyr_Titik_4||l===lyr_Kecamatan_3; },
+            hitTolerance: 8
         });
         map.getViewport().style.cursor = has ? 'pointer' : '';
     });
