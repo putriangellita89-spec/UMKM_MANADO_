@@ -1,3 +1,4 @@
+
 var map = new ol.Map({
     target: 'map',
     renderer: 'canvas',
@@ -87,6 +88,45 @@ var container = document.getElementById('popup');
 var content = document.getElementById('popup-content');
 var closer = document.getElementById('popup-closer');
 var sketch;
+
+// ===== CUSTOM POPUP STYLING =====
+(function injectPopupStyles() {
+    var style = document.createElement('style');
+    style.innerHTML = '\
+        .ol-popup { background:#fff; border-radius:14px; box-shadow:0 8px 32px rgba(0,0,0,0.22); padding:0; min-width:220px; max-width:300px; border:none; font-family:"Segoe UI",Arial,sans-serif; overflow:hidden; }\
+        .ol-popup-closer { top:10px; right:12px; color:#fff; font-size:18px; text-decoration:none; z-index:10; position:absolute; }\
+        .ol-popup-closer:after { content:"✕"; }\
+        #popup-content ul { margin:0; padding:0; list-style:none; }\
+        #popup-content li { padding:0; }\
+        #popup-content table { width:100%; border-collapse:collapse; }\
+        .popup-header { padding:14px 36px 12px 16px; color:#fff; }\
+        .popup-header .popup-icon { font-size:30px; display:block; margin-bottom:4px; }\
+        .popup-header strong { display:block; font-size:15px; font-weight:700; color:#fff; }\
+        .popup-header .popup-sub { font-size:11px; opacity:0.85; margin-top:2px; font-weight:400; }\
+        .popup-body { padding:10px 16px 14px; }\
+        #popup-content tr { border-bottom:1px solid #f0f0f0; }\
+        #popup-content tr:last-child { border-bottom:none; }\
+        #popup-content th { color:#888; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; padding:6px 8px 3px 0; white-space:nowrap; vertical-align:top; }\
+        #popup-content td { color:#222; font-size:13px; padding:6px 0 3px 4px; font-weight:500; vertical-align:top; }\
+        #popup-content td[colspan="2"] { padding:6px 0; color:#333; font-size:14px; }\
+        .hdr-kec { background:linear-gradient(135deg,#1a6fc4,#0d4a8a); }\
+        .hdr-kios { background:linear-gradient(135deg,#b648b0,#7a1f76); }\
+        .hdr-warung { background:linear-gradient(135deg,#2255e0,#0d2eb5); }\
+        .hdr-bengkel { background:linear-gradient(135deg,#3a7bd5,#1a4a8a); }\
+    ';
+    document.head.appendChild(style);
+})();
+
+function createUmkmPopup(name, jenis) {
+    var icons = {'Kios':'🏪','Warung':'🍽️','Bengkel':'🔧'};
+    var hdrs  = {'Kios':'hdr-kios','Warung':'hdr-warung','Bengkel':'hdr-bengkel'};
+    return '<div class="popup-header ' + (hdrs[jenis]||'hdr-kec') + '">' +
+               '<span class="popup-icon">' + (icons[jenis]||'📍') + '</span>' +
+               '<strong>' + (name||'Tanpa Nama') + '</strong>' +
+               '<div class="popup-sub">' + (jenis||'') + '</div>' +
+           '</div>';
+}
+// ===== END CUSTOM POPUP STYLING =====
 
 function stopMediaInPopup() {
     var mediaElements = container.querySelectorAll('audio, video');
@@ -389,10 +429,20 @@ function onSingleClickFeatures(evt) {
             } else {
                 currentFeatureKeys = currentFeature.getKeys();
                 if (doPopup) {
-                    popupText += '<li><table>';
-                    popupText += '<a><b>' + layer.get('popuplayertitle') + '</b></a>';
-                    popupText += createPopupField(currentFeature, currentFeatureKeys, layer);
-                    popupText += '</table>';
+                    if (layer === lyr_Titik_4) {
+                        var nm = currentFeature.get('name') || 'Tanpa Nama';
+                        var jn = currentFeature.get('jenisusaha') || '';
+                        popupText = '<ul><li>' + createUmkmPopup(nm, jn) + '</li>';
+                    } else {
+                        var layerTitle = layer.get('popuplayertitle') || '';
+                        var fields = createPopupField(currentFeature, currentFeatureKeys, layer);
+                        popupText += '<li>' +
+                            '<div class="popup-header hdr-kec">' +
+                                '<span class="popup-icon">&#128506;</span>' +
+                                '<strong>' + layerTitle + '</strong>' +
+                            '</div>' +
+                            '<div class="popup-body"><table>' + fields + '</table></div>';
+                    }
                 }
             }
         }
